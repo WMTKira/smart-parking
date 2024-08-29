@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @author wmtumanday
  */
 @RestController
-@RequestMapping(value = "/smartPark")
+@RequestMapping(value = "/smart/parking")
 public class ParkingLotController {
 
     @Resource

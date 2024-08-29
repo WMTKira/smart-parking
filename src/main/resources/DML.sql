@@ -1,7 +1,7 @@
 
 CREATE TABLE `parking_lot`
 (
-   `lot_id` bigint NOT NULL DEFAULT 0,
+   `lot_id` bigint NOT NULL AUTO_INCREMENT,
    `location` varchar(255) NOT NULL DEFAULT '',
    `capacity` bigint NOT NULL DEFAULT 0,
    `state_type` tinyint NOT NULL DEFAULT 0,

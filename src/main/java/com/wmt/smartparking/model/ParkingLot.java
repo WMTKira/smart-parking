@@ -2,13 +2,11 @@ package com.wmt.smartparking.model;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 /**
  * @author wmtumanday
  */
 @Data
-public class ParkingLot {
+public class ParkingLot extends BaseModel{
 
     /**
      * Lot ID (Unique identifier, 50 characters max)
@@ -23,29 +21,15 @@ public class ParkingLot {
      */
     private Integer capacity;
     /**
-     * Occupied Spaces (Number of currently occupied spaces)
+     * Available Spaces (Number of currently available spaces)
      */
-    private Integer occupiedSpace;
+    private Integer availableSpace;
     /**
      * Occupancy and availability of a parking lot
-     * 0 = avail : 1 = occupied
+     * 0 = avail : 1 = fully occupied
      */
     private Integer stateType;
-    /**
-     * Current log user - add
-     */
-    private String createdBy;
-    /**
-     * Current log user - edit/delete
-     */
-    private String updatedBy;
-    /**
-     * Current log user - add
-     */
-    private LocalDateTime createdAt;
-    /**
-     * Current log user - edit/delete
-     */
-    private LocalDateTime updatedAt;
+    private String stateTypeStr;
+
 
 }

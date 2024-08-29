@@ -28,7 +28,6 @@ public abstract class ResponseVo {
         return getObjectResponseEntity("Operation Succeed", HttpStatus.OK, responseData);
     }
 
-
     public static ResponseEntity<Object> fail() {
         return getObjectResponseEntity("Operation failed", HttpStatus.BAD_REQUEST, null);
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.wmt.smartparking.mapper.ParkingLotMapper">
+<mapper namespace="com.wmt.smartparking.mapper.VehicleMapper">
 
     <insert id="insertParkingLot" parameterType="com.wmt.smartparking.dto.ParkingLotDto">
         INSERT INTO parking_lot (location,
@@ -10,8 +10,8 @@
                                  updated_by)
         VALUES (#{location},
                 #{capacity},
-                'system',
-                'system')
+                #{createdBy},
+                #{updatedBy})
     </insert>
 
     <select id="queryParkingLotList" resultType="com.wmt.smartparking.model.ParkingLot">

@@ -22,14 +22,15 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     @Override
     public PageInfo<ParkingLot> getParkingLotList(ParkingLotDto parkingLotDto) {
         List<ParkingLot> parkingLotList = parkingLotMapper.queryParkingLotList(parkingLotDto);
+        parkingLotList.forEach(p -> {
+            p.setStateTypeStr(Integer.valueOf(0).equals(p.getStateType()) ? "With available slot" : "Occupied");
+            p.setAvailableSpace(p.getCapacity() - parkingLotMapper.countVehiclePerLot(p.getLotId()));
+        });
         return  PageInfo.of(parkingLotList);
     }
 
     @Override
     public int addParkingLot(ParkingLotDto parkingLotDto) {
-        //set the user info temporarily "UserAdmin" since no API authentication is out of scope.
-        parkingLotDto.setCreatedBy("UserAdmin");
-        parkingLotDto.setUpdatedBy("UserAdmin");
         return parkingLotMapper.insertParkingLot(parkingLotDto);
     }
 }
