@@ -19,6 +19,6 @@ public interface ParkingLotMapper {
 
     int insertParkingLot(ParkingLotDto parkingLotDto);
 
-    int countVehiclePerLot(Long lotId);
+    int checkLocation(String location);
 
 }

@@ -37,5 +37,9 @@ public class VehicleDto extends BaseDto{
      * 0 = check in : 1 = check out
      */
     private Integer operateType;
+    /**
+     * Lot ID (Unique identifier, 50 characters max)
+     */
+    private Long lotId;
 
 }

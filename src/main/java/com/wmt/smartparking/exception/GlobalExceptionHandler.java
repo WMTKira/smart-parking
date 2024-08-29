@@ -23,4 +23,9 @@ public class GlobalExceptionHandler {
         });
         return ResponseVo.fail(errorMap);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> handleValidationException(IllegalArgumentException exception) {
+        return ResponseVo.fail(exception.getMessage());
+    }
 }

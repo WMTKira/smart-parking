@@ -20,6 +20,7 @@ public class Vehicle extends BaseModel{
      * Type (Car, Motorcycle, Truck)
      */
     private Integer carType;
+    private String carTypeStr;
 
 
 }

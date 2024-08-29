@@ -36,10 +36,10 @@
         ORDER BY capacity desc
     </select>
 
-    <select id="countVehiclePerLot" resultType="java.lang.Integer">
+    <select id="checkLocation" resultType="java.lang.Integer">
         SELECT count(1)
-        FROM vehicle
-        WHERE lot_id = #{lotId}
+        FROM parking_lot
+        WHERE location = #{location}
     </select>
 
 </mapper>

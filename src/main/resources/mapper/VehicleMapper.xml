@@ -3,43 +3,69 @@
 
 <mapper namespace="com.wmt.smartparking.mapper.VehicleMapper">
 
-    <insert id="insertParkingLot" parameterType="com.wmt.smartparking.dto.ParkingLotDto">
-        INSERT INTO parking_lot (location,
-                                 capacity,
-                                 created_by,
-                                 updated_by)
-        VALUES (#{location},
-                #{capacity},
-                #{createdBy},
-                #{updatedBy})
+    <insert id="insertVehicle" parameterType="com.wmt.smartparking.dto.VehicleDto">
+        INSERT INTO vehicle (plate_id,
+                             owner_name,
+                             car_type,
+                             created_by,
+                             updated_by)
+        VALUES (#{plateId},
+                #{ownerName},
+                #{carType},
+                'system',
+                'system')
     </insert>
 
-    <select id="queryParkingLotList" resultType="com.wmt.smartparking.model.ParkingLot">
+    <update id="updateVehicle" parameterType="com.wmt.smartparking.dto.VehicleDto">
+        UPDATE vehicle
+            SET lot_id = #{lotId},
+                updated_by = 'system'
+    </update>
+
+    <select id="queryVehicleList" resultType="com.wmt.smartparking.model.Vehicle" parameterType="com.wmt.smartparking.dto.VehicleDto">
         SELECT
         lot_id as lotId,
-        location,
-        capacity,
+        plate_id as plateId,
+        owner_name as ownerName,
+        car_type as carType,
         created_by as createdBy,
         updated_by as updatedBy,
-        state_type as stateType,
         created_at as createdAt,
         updated_at as updatedAt
-        FROM parking_lot
+        FROM vehicle
         <where>
             <if test="lotId != null">
                 lot_id = #{lotId}
             </if>
-            <if test="stateType != null and stateType != ''">
-                state_type = #{stateType}
+            <if test="ownerName != null and ownerName != ''">
+                owner_name = #{ownerName}
+            </if>
+            <if test="plateId != null and plateId != ''">
+                plate_id = #{plateId}
+            </if>
+            <if test="carType != null">
+                car_type = #{carType}
             </if>
         </where>
-        ORDER BY capacity desc
+        ORDER BY lot_id desc
     </select>
 
-    <select id="countVehiclePerLot" resultType="java.lang.Integer">
+    <select id="countVehiclePerLot" resultType="java.lang.Integer" parameterType="java.lang.Long">
         SELECT count(1)
         FROM vehicle
         WHERE lot_id = #{lotId}
+    </select>
+
+    <select id="countVehicleByPlate" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT count(1)
+        FROM vehicle
+        WHERE plate_id = #{plateId}
+    </select>
+
+    <select id="getLotIdByVehicle" resultType="java.lang.Long" parameterType="com.wmt.smartparking.dto.VehicleDto">
+        SELECT lot_id
+        FROM vehicle
+        WHERE plate_id = #{plateId}
     </select>
 
 </mapper>

@@ -36,6 +36,10 @@ public abstract class ResponseVo {
         return getObjectResponseEntity(errorMap.toString(), HttpStatus.BAD_REQUEST, null);
     }
 
+    public static ResponseEntity<Object> fail(String errorMessage) {
+        return getObjectResponseEntity(errorMessage, HttpStatus.BAD_REQUEST, null);
+    }
+
     private static ResponseEntity<Object> getObjectResponseEntity(String message, HttpStatus status, Object responseData) {
         Map<String, Object> map = new HashMap<>(4);
         map.put("message", message);
