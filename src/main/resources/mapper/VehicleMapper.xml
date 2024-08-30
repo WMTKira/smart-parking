@@ -16,10 +16,11 @@
                 'system')
     </insert>
 
-    <update id="updateVehicle" parameterType="com.wmt.smartparking.dto.VehicleDto">
+    <update id="updateVehicle">
         UPDATE vehicle
-            SET lot_id = #{lotId},
-                updated_by = 'system'
+        SET lot_id = #{lotId},
+            updated_by = 'system'
+        WHERE plate_id = #{plateId}
     </update>
 
     <select id="queryVehicleList" resultType="com.wmt.smartparking.model.Vehicle" parameterType="com.wmt.smartparking.dto.VehicleDto">
@@ -56,8 +57,9 @@
         WHERE lot_id = #{lotId}
     </select>
 
-    <select id="countVehicleByPlate" resultType="java.lang.Integer" parameterType="java.lang.String">
-        SELECT count(1)
+    <select id="countVehicleByPlate" resultType="com.wmt.smartparking.model.Vehicle" parameterType="java.lang.String">
+        SELECT  lot_id as lotId,
+                car_type as carType,
         FROM vehicle
         WHERE plate_id = #{plateId}
     </select>
@@ -66,6 +68,7 @@
         SELECT lot_id
         FROM vehicle
         WHERE plate_id = #{plateId}
+          AND lot_id != 0
     </select>
 
 </mapper>

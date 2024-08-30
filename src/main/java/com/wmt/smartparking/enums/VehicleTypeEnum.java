@@ -6,16 +6,18 @@ package com.wmt.smartparking.enums;
 
 public enum VehicleTypeEnum {
 
-    CAR(0,"Car"),
-    MOTORCYCLE (1,"Motorcycle") ,
-    TRUCK(2, "Truck");
+    MOTORCYCLE(0, "Motorcycle", 0.5),
+    CAR(1, "Car", 1),
+    TRUCK(2, "Truck", 5);
 
     private int code;
     private String description;
+    private double size;
 
-    VehicleTypeEnum(int i, String truck) {
+    VehicleTypeEnum(int i, String description, double size) {
         this.code = i;
-        this.description = truck;
+        this.description = description;
+        this.size = size;
     }
 
     public static VehicleTypeEnum getInfo(int code) {
@@ -33,6 +35,10 @@ public enum VehicleTypeEnum {
 
     public String getDescription() {
         return description;
+    }
+
+    public double getSize() {
+        return size;
     }
 
 }

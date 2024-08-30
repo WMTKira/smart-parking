@@ -14,6 +14,12 @@
                 'system')
     </insert>
 
+    <update id="updateParkingLot" parameterType="int">
+        UPDATE parking_lot
+        SET state_type = #{stateType},
+            updated_by = 'system'
+    </update>
+
     <select id="queryParkingLotList" resultType="com.wmt.smartparking.model.ParkingLot">
         SELECT
         lot_id as lotId,

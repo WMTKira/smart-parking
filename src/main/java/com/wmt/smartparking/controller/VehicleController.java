@@ -6,6 +6,8 @@ import com.wmt.smartparking.dto.VehicleDto;
 import com.wmt.smartparking.model.Vehicle;
 import com.wmt.smartparking.service.VehicleService;
 import com.wmt.smartparking.validation.AddGroup;
+import com.wmt.smartparking.validation.CheckInGroup;
+import com.wmt.smartparking.validation.CheckOutGroup;
 import com.wmt.smartparking.validation.QueryGroup;
 import com.wmt.smartparking.vo.ResponseVo;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +38,8 @@ public class VehicleController {
         return ResponseVo.success(vehiclePageInfo);
     }
 
-
     /**
-     * @param vehicleDto
-     * Registering a vehicle
+     * @param vehicleDto Registering a vehicle
      */
     @PostMapping(value = "/v1/addVehicle")
     public ResponseEntity<Object> addVehicle(@RequestBody @Validated(AddGroup.class) VehicleDto vehicleDto) {
@@ -48,11 +48,10 @@ public class VehicleController {
     }
 
     /**
-     * @param vehicleDto
-     * Checking in a vehicle to a parking lot
+     * @param vehicleDto Checking in a vehicle to a parking lot
      */
     @PostMapping(value = "/v1/checkInVehicle")
-    public ResponseEntity<Object> checkInVehicle(@RequestBody @Validated(AddGroup.class) VehicleDto vehicleDto) {
+    public ResponseEntity<Object> checkInVehicle(@RequestBody @Validated(CheckInGroup.class) VehicleDto vehicleDto) {
         vehicleDto.setOperateType(0);
         int succeed = vehicleService.checkInOutVehicle(vehicleDto);
         return succeed > 0 ? ResponseVo.success() : ResponseVo.fail();
@@ -60,11 +59,10 @@ public class VehicleController {
 
 
     /**
-     * @param vehicleDto
-     * Checking out a vehicle from a parking lot
+     * @param vehicleDto Checking out a vehicle from a parking lot
      */
     @PostMapping(value = "/v1/checkOutVehicle")
-    public ResponseEntity<Object> checkOutVehicle(@RequestBody @Validated(AddGroup.class) VehicleDto vehicleDto) {
+    public ResponseEntity<Object> checkOutVehicle(@RequestBody @Validated(CheckOutGroup.class) VehicleDto vehicleDto) {
         vehicleDto.setOperateType(1);
         int succeed = vehicleService.checkInOutVehicle(vehicleDto);
         return succeed > 0 ? ResponseVo.success() : ResponseVo.fail();

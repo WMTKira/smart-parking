@@ -6,7 +6,7 @@ import lombok.Data;
  * @author wmtumanday
  */
 @Data
-public class Vehicle extends BaseModel{
+public class Vehicle extends BaseModel {
 
     /**
      * License Plate
@@ -21,6 +21,13 @@ public class Vehicle extends BaseModel{
      */
     private Integer carType;
     private String carTypeStr;
-
+    /**
+     * Size of the vehicle
+     */
+    private double vehicleSize;
+    /**
+     * Lot ID
+     */
+    private Long lotId;
 
 }

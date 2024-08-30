@@ -28,16 +28,5 @@ public class AssertUtil {
             throw new IllegalArgumentException(message);
         }
     }
-    public static void notEmpty(String string, String message) {
-        if (string == null || string.isEmpty()) {
-            throw new IllegalArgumentException(message);
-        }
-    }
-    public static void notBlank(String string, String message) {
-        if (string == null || string.trim().isEmpty()) {
-            throw new IllegalArgumentException(message);
-        }
-    }
-
 
 }

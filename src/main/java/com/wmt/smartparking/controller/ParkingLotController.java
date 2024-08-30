@@ -11,6 +11,7 @@ import com.wmt.smartparking.vo.ResponseVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 
 
@@ -37,8 +38,7 @@ public class ParkingLotController {
     }
 
     /**
-     * @param parkingLotDto
-     * Registering a parking lot
+     * @param parkingLotDto Registering a parking lot
      */
     @PostMapping(value = "/v1/addParkingLot")
     public ResponseEntity<Object> addParkingLot(@RequestBody @Validated(AddGroup.class) ParkingLotDto parkingLotDto) {

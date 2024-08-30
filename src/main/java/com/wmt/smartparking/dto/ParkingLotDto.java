@@ -1,17 +1,17 @@
 package com.wmt.smartparking.dto;
 
 import com.wmt.smartparking.validation.AddGroup;
-import com.wmt.smartparking.validation.QueryGroup;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author wmtumanday
  */
 @Data
-public class ParkingLotDto extends BaseDto{
+@Builder
+public class ParkingLotDto extends BaseDto {
 
     /**
      * Lot ID (Unique identifier, 50 characters max)
@@ -32,7 +32,6 @@ public class ParkingLotDto extends BaseDto{
      * 0 = avail : 1 = occupied
      */
     private Integer stateType;
-
 
 
 }
