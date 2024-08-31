@@ -350,3 +350,8 @@ Response body sample:
 }
 ----------------------------------------------------------------
 ![img_8.png](img_8.png)
+
+----------------------------------------------------------------
+# Simple unit tests 
+
+src/test/java/com/wmt/smartparking/SmartParkingApplicationTests.java
