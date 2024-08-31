@@ -39,13 +39,13 @@
                 lot_id = #{lotId}
             </if>
             <if test="ownerName != null and ownerName != ''">
-                owner_name = #{ownerName}
+                and owner_name = #{ownerName}
             </if>
             <if test="plateId != null and plateId != ''">
-                plate_id = #{plateId}
+                and plate_id = #{plateId}
             </if>
             <if test="vehicleType != null">
-                vehicle_type = #{vehicleType}
+                and vehicle_type = #{vehicleType}
             </if>
         </where>
         ORDER BY updated_at desc
