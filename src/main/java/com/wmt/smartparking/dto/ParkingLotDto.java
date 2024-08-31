@@ -1,12 +1,14 @@
 package com.wmt.smartparking.dto;
 
 import com.wmt.smartparking.validation.AddGroup;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -31,8 +33,8 @@ public class ParkingLotDto extends BaseDto {
     /**
      * Capacity (Total number of parking spaces)
      */
-    @NotBlank(message = "Capacity cannot be empty!", groups = AddGroup.class)
-    private String capacity;
+    @NotNull(message = "Capacity cannot be empty!", groups = AddGroup.class)
+    private Integer capacity;
     /**
      * Occupancy and availability of a parking lot
      * 0 = avail : 1 = occupied
