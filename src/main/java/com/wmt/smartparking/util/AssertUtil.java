@@ -1,6 +1,8 @@
 package com.wmt.smartparking.util;
 
+import com.github.pagehelper.util.StringUtil;
 import lombok.experimental.UtilityClass;
+import org.springframework.util.StringUtils;
 
 /**
  * @author wmtumanday
@@ -28,5 +30,16 @@ public class AssertUtil {
             throw new IllegalArgumentException(message);
         }
     }
+    public static void notBlank(String str, String message) {
+        if (StringUtil.isEmpty(str)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+    public static void isBlank(String str, String message) {
+        if (StringUtil.isNotEmpty(str)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
 
 }

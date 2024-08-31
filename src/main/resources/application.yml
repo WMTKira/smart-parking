@@ -4,7 +4,7 @@ spring:
   sql:
     init:
       platform: h2
-      data-locations: classpath:/DML.sql
+      data-locations: classpath:/DDL.sql
 
 mybatis:
   mapper-locations: classpath:/mapper/*.xml

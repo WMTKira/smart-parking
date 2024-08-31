@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author wmtumanday
@@ -36,6 +37,16 @@ public class VehicleController {
         PageMethod.startPage(vehicleDto.getPageNum(), vehicleDto.getPageSize());
         PageInfo<Vehicle> vehiclePageInfo = vehicleService.getVehicleList(vehicleDto);
         return ResponseVo.success(vehiclePageInfo);
+    }
+
+    /**
+     * @return map of vehicle types
+     * For vehicle type selection used on Registering a vehicle
+     */
+    @GetMapping(value = "/v1/getVehicleTypeMap")
+    public ResponseEntity<Object> getVehicleTypeMap() {
+        Map<String, Integer> vehicleTypeMap = vehicleService.getVehicleTypeMap();
+        return ResponseVo.success(vehicleTypeMap);
     }
 
     /**

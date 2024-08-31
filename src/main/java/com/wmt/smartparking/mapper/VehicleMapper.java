@@ -16,12 +16,10 @@ public interface VehicleMapper {
 
     int insertVehicle(VehicleDto vehicleDto);
 
-    int countVehiclePerLot(Long lotId);
+    Vehicle getVehicleByPlate(String plateId);
 
-    Vehicle countVehicleByPlate(String plateId);
+    String getLotIdByVehicle(VehicleDto vehicleDto);
 
-    Long getLotIdByVehicle(VehicleDto vehicleDto);
-
-    int updateVehicle(String plateId, Long lotId);
+    int updateVehicle(String plateId, String lotId);
 
 }

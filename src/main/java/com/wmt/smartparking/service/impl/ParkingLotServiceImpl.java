@@ -39,9 +39,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             double load = 0;
             List<Vehicle> vehicleList = vehicleMapper.queryVehicleList(VehicleDto.builder().lotId(p.getLotId()).build());
             for (Vehicle vehicle : vehicleList) {
-                load += Objects.requireNonNull(VehicleTypeEnum.getInfo(vehicle.getCarType())).getSize();
+                load += Objects.requireNonNull(VehicleTypeEnum.getInfo(vehicle.getVehicleType())).getSize();
             }
-            p.setStateTypeStr(Integer.valueOf(0).equals(p.getStateType()) ? "With available slot" : "Fully Occupied");
+            p.setStateTypeStr(Integer.valueOf(0).equals(p.getStateType()) ? "With available slot" : "Fully occupied");
             p.setAvailableSpace(p.getCapacity() - load);
             Map<String, Boolean> carMapAvail = new HashMap<>();
             for (VehicleTypeEnum vehicleTypeEnum : VehicleTypeEnum.values()) {
@@ -54,8 +54,10 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public int addParkingLot(ParkingLotDto parkingLotDto) {
+        int lotIdUsageCount = parkingLotMapper.checkLotId(parkingLotDto.getLotId());
+        AssertUtil.isFalse(lotIdUsageCount > 0, "Parking lot identifier already exists!");
         int locationUsageCount = parkingLotMapper.checkLocation(parkingLotDto.getLocation());
-        AssertUtil.isFalse(locationUsageCount > 0, "Location already Exists!");
+        AssertUtil.isFalse(locationUsageCount > 0, "Parking lot location already exists!");
         return parkingLotMapper.insertParkingLot(parkingLotDto);
     }
 }

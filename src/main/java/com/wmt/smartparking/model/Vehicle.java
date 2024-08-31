@@ -19,8 +19,8 @@ public class Vehicle extends BaseModel {
     /**
      * Type (Car, Motorcycle, Truck)
      */
-    private Integer carType;
-    private String carTypeStr;
+    private Integer vehicleType;
+    private String vehicleTypeStr;
     /**
      * Size of the vehicle
      */
@@ -28,6 +28,6 @@ public class Vehicle extends BaseModel {
     /**
      * Lot ID
      */
-    private Long lotId;
+    private String lotId;
 
 }

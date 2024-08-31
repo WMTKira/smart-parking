@@ -4,11 +4,13 @@
 <mapper namespace="com.wmt.smartparking.mapper.ParkingLotMapper">
 
     <insert id="insertParkingLot" parameterType="com.wmt.smartparking.dto.ParkingLotDto">
-        INSERT INTO parking_lot (location,
+        INSERT INTO parking_lot (lot_id,
+                                 location,
                                  capacity,
                                  created_by,
                                  updated_by)
-        VALUES (#{location},
+        VALUES (#{lotId},
+                #{location},
                 #{capacity},
                 'system',
                 'system')
@@ -32,11 +34,14 @@
         updated_at as updatedAt
         FROM parking_lot
         <where>
-            <if test="lotId != null">
+            <if test="lotId != null and lotId != ''">
                 lot_id = #{lotId}
             </if>
-            <if test="stateType != null and stateType != ''">
-                state_type = #{stateType}
+            <if test="stateType != null">
+                and state_type = #{stateType}
+            </if>
+            <if test="location != null and location != ''">
+                and location = #{location}
             </if>
         </where>
         ORDER BY capacity desc
@@ -46,6 +51,12 @@
         SELECT count(1)
         FROM parking_lot
         WHERE location = #{location}
+    </select>
+
+    <select id="checkLotId" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM parking_lot
+        WHERE lot_id = #{lotId}
     </select>
 
 </mapper>

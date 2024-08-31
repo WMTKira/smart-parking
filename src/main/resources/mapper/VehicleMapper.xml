@@ -6,12 +6,12 @@
     <insert id="insertVehicle" parameterType="com.wmt.smartparking.dto.VehicleDto">
         INSERT INTO vehicle (plate_id,
                              owner_name,
-                             car_type,
+                             vehicle_type,
                              created_by,
                              updated_by)
         VALUES (#{plateId},
                 #{ownerName},
-                #{carType},
+                #{vehicleType},
                 'system',
                 'system')
     </insert>
@@ -28,14 +28,14 @@
         lot_id as lotId,
         plate_id as plateId,
         owner_name as ownerName,
-        car_type as carType,
+        vehicle_type as vehicleType,
         created_by as createdBy,
         updated_by as updatedBy,
         created_at as createdAt,
         updated_at as updatedAt
         FROM vehicle
         <where>
-            <if test="lotId != null">
+            <if test="lotId != null and lotId != ''">
                 lot_id = #{lotId}
             </if>
             <if test="ownerName != null and ownerName != ''">
@@ -44,31 +44,25 @@
             <if test="plateId != null and plateId != ''">
                 plate_id = #{plateId}
             </if>
-            <if test="carType != null">
-                car_type = #{carType}
+            <if test="vehicleType != null">
+                vehicle_type = #{vehicleType}
             </if>
         </where>
-        ORDER BY lot_id desc
+        ORDER BY updated_at desc
     </select>
 
-    <select id="countVehiclePerLot" resultType="java.lang.Integer" parameterType="java.lang.Long">
-        SELECT count(1)
-        FROM vehicle
-        WHERE lot_id = #{lotId}
-    </select>
-
-    <select id="countVehicleByPlate" resultType="com.wmt.smartparking.model.Vehicle" parameterType="java.lang.String">
+    <select id="getVehicleByPlate" resultType="com.wmt.smartparking.model.Vehicle" parameterType="java.lang.String">
         SELECT  lot_id as lotId,
-                car_type as carType,
+                vehicle_type as vehicleType,
         FROM vehicle
         WHERE plate_id = #{plateId}
     </select>
 
-    <select id="getLotIdByVehicle" resultType="java.lang.Long" parameterType="com.wmt.smartparking.dto.VehicleDto">
+    <select id="getLotIdByVehicle" resultType="java.lang.String" parameterType="com.wmt.smartparking.dto.VehicleDto">
         SELECT lot_id
         FROM vehicle
         WHERE plate_id = #{plateId}
-          AND lot_id != 0
+          AND lot_id != ''
     </select>
 
 </mapper>

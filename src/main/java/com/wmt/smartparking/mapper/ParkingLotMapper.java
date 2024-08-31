@@ -18,5 +18,7 @@ public interface ParkingLotMapper {
 
     int checkLocation(String location);
 
+    int checkLotId(String lotId);
+
     void updateParkingLot(int stateType);
 }

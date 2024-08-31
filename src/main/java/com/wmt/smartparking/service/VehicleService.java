@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.wmt.smartparking.dto.VehicleDto;
 import com.wmt.smartparking.model.Vehicle;
 
+import java.util.Map;
+
 /**
  * @author wmtumanday
  */
@@ -27,5 +29,11 @@ public interface VehicleService {
      * Checking in/out a vehicle to a parking lot
      */
     int checkInOutVehicle(VehicleDto vehicleDto);
+
+    /**
+     * @return map of vehicle types
+     * For vehicle type selection used on Registering a vehicle
+     */
+    Map<String, Integer> getVehicleTypeMap();
 
 }

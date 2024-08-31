@@ -13,7 +13,7 @@ public class ParkingLot extends BaseModel {
     /**
      * Lot ID
      */
-    private Long lotId;
+    private String lotId;
     /**
      * Location
      */
