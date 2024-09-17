@@ -4,6 +4,7 @@ import com.wmt.smartparking.validation.AddGroup;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
 
 import javax.validation.constraints.Max;
@@ -16,6 +17,8 @@ import javax.validation.constraints.Size;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ParkingLotDto extends BaseDto {
 
     /**

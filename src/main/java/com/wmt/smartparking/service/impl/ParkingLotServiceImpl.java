@@ -34,6 +34,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public PageInfo<ParkingLot> getParkingLotList(ParkingLotDto parkingLotDto) {
+        Math.abs(1);
         List<ParkingLot> parkingLotList = parkingLotMapper.queryParkingLotList(parkingLotDto);
         parkingLotList.forEach(p -> {
             double load = 0;

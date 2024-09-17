@@ -14,6 +14,7 @@ import com.wmt.smartparking.service.VehicleService;
 import com.wmt.smartparking.util.AssertUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -30,6 +31,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Autowired
     private ParkingLotMapper parkingLotMapper;
 
+    @Qualifier("parkingLotServiceImpl")
     @Autowired
     private ParkingLotService parkingLotService;
 
