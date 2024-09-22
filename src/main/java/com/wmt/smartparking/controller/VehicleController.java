@@ -1,5 +1,6 @@
 package com.wmt.smartparking.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import com.wmt.smartparking.dto.VehicleDto;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @author wmtumanday
  */
 @RestController
-@RequestMapping(value = "/smart/vehicle")
+@RequestMapping(value = "/smart/parking")
 public class VehicleController {
 
     @Resource
@@ -34,7 +35,7 @@ public class VehicleController {
      */
     @GetMapping(value = "/v1/getVehicleList")
     public ResponseEntity<Object> getVehicleList(@RequestBody @Validated(QueryGroup.class) VehicleDto vehicleDto) {
-        PageMethod.startPage(vehicleDto.getPageNum(), vehicleDto.getPageSize());
+        PageHelper.startPage(vehicleDto.getPageNum(), vehicleDto.getPageSize());
         PageInfo<Vehicle> vehiclePageInfo = vehicleService.getVehicleList(vehicleDto);
         return ResponseVo.success(vehiclePageInfo);
     }

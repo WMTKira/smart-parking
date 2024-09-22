@@ -1,6 +1,8 @@
 package com.wmt.smartparking.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 import com.wmt.smartparking.dto.ParkingLotDto;
 import com.wmt.smartparking.dto.VehicleDto;
 import com.wmt.smartparking.enums.VehicleTypeEnum;
@@ -34,7 +36,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public PageInfo<ParkingLot> getParkingLotList(ParkingLotDto parkingLotDto) {
-        Math.abs(1);
+        PageMethod.startPage(parkingLotDto.getPageNum(), parkingLotDto.getPageSize());
         List<ParkingLot> parkingLotList = parkingLotMapper.queryParkingLotList(parkingLotDto);
         parkingLotList.forEach(p -> {
             double load = 0;
@@ -50,7 +52,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             }
             p.setMapVehicleTypeAvail(carMapAvail);
         });
-        return PageInfo.of(parkingLotList);
+        return new PageInfo<>(parkingLotList);
     }
 
     @Override

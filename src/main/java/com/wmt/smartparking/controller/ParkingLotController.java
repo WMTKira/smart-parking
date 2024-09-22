@@ -43,15 +43,14 @@ public class ParkingLotController {
      * @return List<ParkingLot>
      * Viewing current occupancy and availability of a parking lot by passing stateType
      */
-    @GetMapping(value = "/v1/getParkingLotList")
+    @PostMapping(value = "/v1/getParkingLotList")
     public ResponseEntity<Object> getParkingLotList(@RequestBody @Validated(QueryGroup.class) ParkingLotDto parkingLotDto) {
         String test = financeFeignClient.test();
         log.info("test config and feign {},{}", config, test);
         List<ParkingLot> dwdwdw= new ArrayList<>();
-        PageMethod.startPage(parkingLotDto.getPageNum(), parkingLotDto.getPageSize());
+        log.info("{},{}",parkingLotDto.getPageNum(), parkingLotDto.getPageSize());
+
         PageInfo<ParkingLot> parkingLotList = parkingLotService.getParkingLotList(parkingLotDto);
-
-
         return ResponseVo.success(parkingLotList);
     }
 

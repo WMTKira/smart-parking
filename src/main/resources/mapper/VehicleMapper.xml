@@ -53,7 +53,7 @@
 
     <select id="getVehicleByPlate" resultType="com.wmt.smartparking.model.Vehicle" parameterType="java.lang.String">
         SELECT  lot_id as lotId,
-                vehicle_type as vehicleType,
+                vehicle_type as vehicleType
         FROM vehicle
         WHERE plate_id = #{plateId}
     </select>
